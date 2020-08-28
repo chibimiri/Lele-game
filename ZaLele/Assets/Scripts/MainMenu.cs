@@ -6,6 +6,11 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     // Start is called before the first frame update
+    public LevelManager gameLevelManager;
+    void Start()
+    {
+        gameLevelManager = FindObjectOfType<LevelManager>();   
+    }
     public void PlayGame()
     {
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); 
@@ -16,5 +21,9 @@ public class MainMenu : MonoBehaviour
     {
         Application.Quit();
         Debug.Log("QUIT");
+    }
+    public void RemovePanel()
+    {
+        gameLevelManager.QuitarPanel();
     }
 }

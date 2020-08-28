@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class PlantaScript : MonoBehaviour
 {
-    public int score = 0;
+    private LevelManager gameLevelManager;
+	public int plantaValue;
+	public AudioClip plantaAudio;
     //private Animator plantAnimation;
     // Start is called before the first frame update
     void Start()
     {
+       gameLevelManager = FindObjectOfType<LevelManager>();
        // plantAnimation = GetComponent<Animator>(); 
     }
 
@@ -20,10 +23,9 @@ public class PlantaScript : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("activada");
-        score+=5;
-        Debug.Log("Score: " + score);
-        //plantAnimation.SetBool("OnTriggered", true);
+        AudioSource.PlayClipAtPoint(plantaAudio,transform.position);
+		gameLevelManager.AddPlantitas(plantaValue);
+        //gameObject.SetActive(false);
         Destroy (gameObject);
     }
 }
